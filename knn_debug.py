@@ -16,7 +16,7 @@ def str_column_to_float(dataset, column):
             row[column] = float(row[column])
         else:
             print(f"Warning: Non-numeric value '{row[column]}' in column {column}")
-            row[column] = 0.0  # Ustaw wartość domyślną
+            row[column] = 0.0  # Wartość domyślna
 
 
 # Convert string column to integer
@@ -63,7 +63,6 @@ def euclidean_distance(row1, row2):
 def get_neighbors(train, test_row, num_neighbors):
     distances = [(train_row, euclidean_distance(test_row, train_row)) for train_row in train]
     distances.sort(key=lambda tup: tup[1])
-    # Upewnij się, że liczba sąsiadów nie przekracza długości zbioru treningowego
     num_neighbors = min(num_neighbors, len(distances))
     return [distances[i][0] for i in range(num_neighbors)]
 
@@ -101,7 +100,7 @@ def load_csv_dynamic(filename, separator=",", class_column=None):
 
 
 if __name__ == '__main__':
-    filename = 'bezdekIris.data'  # Zmień na odpowiedni plik
+    filename = 'bezdekIris.data'  
     separator = ','
     class_column = None
 
@@ -153,7 +152,6 @@ if __name__ == '__main__':
     print(f"Training set size: {len(train_data)}")
     print(f"Test set size: {len(test_data)}")
 
-    # Definicja liczby sąsiadów
     num_neighbors = 3
 
     # Obliczenie i wyświetlenie dokładności modelu
